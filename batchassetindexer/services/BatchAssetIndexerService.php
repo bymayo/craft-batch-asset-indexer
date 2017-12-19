@@ -20,7 +20,7 @@ class BatchAssetIndexerService extends BaseApplicationComponent
 	{
 		return craft()->plugins->getPlugin('batchAssetIndexer')->getSettings()->$name;
 	}
-
+	
 	public function assetSources()
     {
 	    $query = craft()->db->createCommand();
@@ -38,6 +38,18 @@ class BatchAssetIndexerService extends BaseApplicationComponent
 	    $source = craft()->db->createCommand()->select('*')->from('assetsources')->where('id="' . $sourceId . '"')->queryRow();
 		return json_decode($source["settings"]);
     }
+    
+	public function sourceAssetCount($sourceId)
+	{
+		$sourcePath = $this->parsePath($this->sourceSettings($sourceId)->path);
+		
+		if (is_dir($sourcePath)) {
+			$sourceFiles = scandir($sourcePath);
+			return count($sourceFiles);	
+		}
+		
+		return 'ERROR';
+	}
     
 	public function getAssets($sourceId)
 	{

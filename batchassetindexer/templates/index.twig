@@ -9,16 +9,18 @@
 	<table class="data fullwidth collapsible">
 		<thead>
 			<tr>
-				<th>Source</th>.
+				<th>Source</th>
 				<th>Handle</th>
+				<th># Assets</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for source in craft.batchassetindexer.assetSources() %}
 				<tr>			
-					<td>{{ source.name }}</td>
-					<td><code>{{ source.handle }}</code></td>				
+					<td><strong>{{ source.name }}</strong></td>
+					<td><code>{{ source.handle }}</code></td>
+					<td>{{ craft.batchassetindexer.sourceAssetCount(source.id)|number_format() }}</td>
 					<td><a href="{{ actionUrl('batchAssetIndexer/import', { handle: source.id }) }}">Batch Index</a></td>
 				</tr>
 			{% endfor %}
