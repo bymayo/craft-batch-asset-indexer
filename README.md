@@ -1,6 +1,6 @@
-**This plugin was inspired by Matt Shearing's (From A Digital) Asset Indexer' plugin which works amazingly for indexing large amounts of Amazon S3 Assets** 
+**This plugin was inspired by Matt Shearing's (From A Digital) "Asset Indexer" plugin which works amazingly for indexing large amounts of Amazon S3 Assets** 🔥 
 
-Looking to index Amazon S3 Assets in to Craft CMS? [Asset Indexer](https://github.com/a-digital/assetindexer)
+Looking to index Amazon S3 Assets in to Craft CMS? [Asset Indexer](https://github.com/a-digital/assetindexer) 👌
 
 # Batch Asset Indexer
 
