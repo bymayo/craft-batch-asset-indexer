@@ -1,6 +1,6 @@
 # Batch Asset Indexer
 
-> This plugin as still under development, so please ensure you backup your database before attempting to import large amounts of assets.
+> !!! This plugin as still under development, so please ensure you backup your database before attempting to import large amounts of assets. !!!
 
 Batch Asset Indexer is a Craft CMS plugin that will index a large amount of assets when Craft CMS fails to do so, or PHP times out.
 
@@ -12,6 +12,7 @@ Batch Asset Indexer is a Craft CMS plugin that will index a large amount of asse
 
 ## Useage
 
+- Backup your database before attempting to import any large amounts of assets (`Settings -> Backup Database`)
 - Click `Batch Asset Indexer` in the Craft CMS sidebar.
 - Choose `Batch Index` on the asset source you want to index.
 
