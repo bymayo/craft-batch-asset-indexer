@@ -1,8 +1,10 @@
+**This plugin was inspired by Matt Shearing's (From A Digital) 'Asset Indexer' plugin which works amazingly for indexing large amounts of Amazon S3 Assets** Looking too index Amazon S3 Assets in to Craft CMS? [Asset Indexer](https://github.com/a-digital/assetindexer)
+
 # Batch Asset Indexer
 
 > !!! This plugin as still under development, so please ensure you backup your database before attempting to import large amounts of assets. !!!
 
-Batch Asset Indexer is a Craft CMS plugin that will index a large amount of assets when Craft CMS fails to do so, or PHP times out.
+Batch Asset Indexer is a Craft CMS plugin that will index a large amount of local assets when Craft CMS fails to do so, or PHP times out.
 
 ## Installation
 
@@ -18,7 +20,7 @@ Batch Asset Indexer is a Craft CMS plugin that will index a large amount of asse
 
 ## Limitations
 
-Currently this plugin only lets you index assets if they are all in the main source folder (E.g. `Uploads > Images`) and are not within any subfolders. It also only currently works when the asset source has *never* been indexed previously.
+Currently this plugin only lets you index assets if they are all in the main source folder (E.g. `Uploads > Images`) and are not within any subfolders. It also only currently works when the asset source has **never** been indexed previously.
 
 If you have any questions about this, please post an issue.
 
