@@ -1,0 +1,28 @@
+{% extends "_layouts/cp" %}
+
+{% import "_includes/forms" as forms %}
+
+{% set title = "Batch Asset Indexer"|t %}
+
+{% set content %}
+
+	<table class="data fullwidth collapsible">
+		<thead>
+			<tr>
+				<th>Source</th>.
+				<th>Handle</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for source in craft.batchassetindexer.assetSources() %}
+				<tr>			
+					<td>{{ source.name }}</td>
+					<td><code>{{ source.handle }}</code></td>				
+					<td><a href="{{ actionUrl('batchAssetIndexer/import', { handle: source.id }) }}">Batch Index</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endset %}

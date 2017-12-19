@@ -1,0 +1,13 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField
+	(
+		{
+			label: 'Assets Per Batch',
+			instructions: "The amount of assets you want importing per batch. Adjusting this results in far less task timeout issues.",
+			id: 'assetsPerBatch',
+			name: 'assetsPerBatch', 
+			value: settings['assetsPerBatch']
+		}
+	)
+}}
