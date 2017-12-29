@@ -1,4 +1,12 @@
 [
+	{
+        "version": "1.0.1",
+        "downloadUrl": "https://github.com/bymayo/batchassetindexer/archive/master.zip",
+        "date": "2017-12-29T14:02:43.202Z",
+        "notes": [
+            "[Added] Changed task to show steps to give better information on the indexing progress"
+        ]
+    },
     {
         "version": "1.0.0",
         "downloadUrl": "https://github.com/bymayo/batchassetindexer/archive/master.zip",

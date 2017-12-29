@@ -48,13 +48,25 @@ class BatchAssetIndexerService extends BaseApplicationComponent
 			return count($sourceFiles);	
 		}
 		
-		return 'ERROR';
+		return 'Error';
+	}
+	
+	public function deleteNullAssets($sourceId)
+	{
+		
+		$query = craft()->db->createCommand()
+				->select('*')
+				->from('assetfiles')
+				->where('sourceId = ' . $sourceId)
+				->andWhere('width IS NULL')
+				->queryAll();
+		
 	}
     
 	public function getAssets($sourceId)
 	{
 		
-		$files = array_diff(scandir($this->parsePath($this->sourceSettings($sourceId)->path)), array('..', '.'));
+		$files = array_diff(preg_grep('/^([^.])/', scandir($this->parsePath($this->sourceSettings($sourceId)->path))), array('..', '.'));
 		$filesSplits = array_chunk($files, $this->getSetting('assetsPerBatch'));
 		
 		foreach ($filesSplits as $split) {
@@ -77,25 +89,28 @@ class BatchAssetIndexerService extends BaseApplicationComponent
 		
 	}
 	
-	public function indexAssets($assets, $sourceId)
+	public function indexAsset($asset, $sourceId, $offset)
 	{
 		
-		$sessionId = craft()->assetIndexing->getIndexingSessionId();
+		$path = $this->parsePath($this->sourceSettings($sourceId)->path);
 		
-		// $missingFiles = craft()->assetIndexing->getMissingFiles(array($sourceId), $sessionId);	
-		// craft()->assetIndexing->removeObsoleteFileRecords($missingFiles);
+		// Delete NULL files
+		// (Gets by issue where files are not indexed properly due to timeouts)
+		// $this->deleteNullAssets($sourceId);
 		
-		for ($offset = 0; $offset <= count($assets) - 1; $offset++) { 
-					
-			// Inset Index
+		if (filetype($path . $asset) == "file") {
+		
+			$sessionId = craft()->assetIndexing->getIndexingSessionId();
+						
+			// Insert Index
 			craft()->db->createCommand()->insert(
 				'assetindexdata', 
 				array(
 					"sessionId" => $sessionId,
 					"sourceId" => $sourceId,
 					"offset" => $offset,
-					"uri" => $this->parsePath($this->sourceSettings($sourceId)->path) . $assets[$offset],
-					"size" => filesize($this->parsePath($this->sourceSettings($sourceId)->path) . $assets[$offset])
+					"uri" =>  $path . $asset,
+					"size" => filesize($path . $asset)
 				)
 			);
 			
@@ -104,7 +119,7 @@ class BatchAssetIndexerService extends BaseApplicationComponent
 			
 			// Delete Index
 			craft()->db->createCommand()->delete('assetindexdata', array('AND', 'sessionId=:sessionId', 'offset=:offset'), array(':offset'=> $offset, ':sessionId'=> $sessionId));
-			
+		
 		}
 	
 	}

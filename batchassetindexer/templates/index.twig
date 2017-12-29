@@ -6,12 +6,17 @@
 
 {% set content %}
 
+	<div class="#" style="margin-bottom: 30px; border: 1px solid #e3e5e8; border-radius: 3px; padding: 7px;">
+		<span class="info"></span> Indexing <strong>{{ craft.batchassetindexer.getSetting('assetsPerBatch') }}</strong> assets per batch. <a href="/admin/settings/plugins/batchassetindexer">Change this setting &rarr;</a>
+	</div>
+
 	<table class="data fullwidth collapsible">
 		<thead>
 			<tr>
 				<th>Source</th>
 				<th>Handle</th>
 				<th># Assets</th>
+				<th># Batches</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -21,6 +26,7 @@
 					<td><strong>{{ source.name }}</strong></td>
 					<td><code>{{ source.handle }}</code></td>
 					<td>{{ craft.batchassetindexer.sourceAssetCount(source.id)|number_format() }}</td>
+					<td>{{ (craft.batchassetindexer.sourceAssetCount(source.id) / craft.batchassetindexer.getSetting('assetsPerBatch'))|round }}</td>
 					<td><a href="{{ actionUrl('batchAssetIndexer/import', { handle: source.id }) }}">Batch Index</a></td>
 				</tr>
 			{% endfor %}

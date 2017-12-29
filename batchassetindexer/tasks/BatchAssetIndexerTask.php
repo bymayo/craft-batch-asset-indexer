@@ -41,7 +41,7 @@ class BatchAssetIndexerTask extends BaseTask
      */
     public function getTotalSteps()
     {
-        return 1;
+        return count($this->getSettings()->assets);
     }
 
     /**
@@ -51,10 +51,10 @@ class BatchAssetIndexerTask extends BaseTask
     public function runStep($step)
     {
 
-		$assets = $this->getSettings()->assets;
+		$asset = $this->getSettings()->assets[$step];
 		$sourceId = $this->getSettings()->sourceId;
 		
-	    craft()->batchAssetIndexer->indexAssets($assets, $sourceId);
+	    craft()->batchAssetIndexer->indexAsset($asset, $sourceId, $step);
 	    
 		return true;
 

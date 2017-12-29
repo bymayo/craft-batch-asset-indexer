@@ -30,5 +30,10 @@ class BatchAssetIndexerVariable
 	{
 		return craft()->batchAssetIndexer->sourceAssetCount($sourceId);
 	}
+	
+	public function getSetting($name)
+	{
+		return craft()->batchAssetIndexer->getSetting($name);
+	}
 
 }
