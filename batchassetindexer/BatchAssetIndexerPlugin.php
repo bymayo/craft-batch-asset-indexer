@@ -76,7 +76,7 @@ class BatchAssetIndexerPlugin extends BasePlugin
      */
     public function getDeveloper()
     {
-        return 'Jason Mayo';
+        return 'ByMayo';
     }
 
     /**
