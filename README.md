@@ -1,4 +1,6 @@
-> ⚠️ This repo is not under active development and will not be moved to Craft 3.x. ⚠️
+> ⚠️ Deprecated - This Craft CMS 2.x plugin is no longer supported. 
+
+---
 
 **This plugin was inspired by Matt Shearing's (From A Digital) "Asset Indexer" plugin which works amazingly for indexing large amounts of Amazon S3 Assets** 🔥 
 
